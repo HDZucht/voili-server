@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX-License-Identifier: Apache-2.0 · Copyright 2026 Hans-Dieter Zucht
 # Startet Voili Server und öffnet das Bedienfeld. / Starts Voili Server and opens the control panel.
 # Optional: Ausgabegerät als Argument (Teilstring). / Optional: output device as argument (substring).
 D="$(cd "$(dirname "$0")" && pwd)"

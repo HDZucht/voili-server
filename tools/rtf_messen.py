@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Hans-Dieter Zucht. Redistributions must keep this notice and the NOTICE file (author and sources).
 """Echtzeitfaktor des Inworld Voice Isolator auf diesem Mac messen.
 Streaming (Echtzeitmodell) mit verschiedenen Stückgrößen, Offline-Modell auf kurzen Fenstern.
 RTF = Rechenzeit / Audiodauer; < 1 heißt schneller als Echtzeit."""

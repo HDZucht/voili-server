@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Hans-Dieter Zucht. Redistributions must keep this notice and the NOTICE file (author and sources).
 """Eine Datei durch alle Varianten schicken: Echtzeitmodell mit Vorschau 0/20/40 ms (100-ms-Stücke wie live),
 Offline-Modell ganz (8-s-Blöcke) und in den Live-Fenstern (0,5 s · 1 s · 0,25 s). Schreibt WAVs (16 bit) und
 druckt je Variante den Pegel gegenüber dem Original, gesamt und im SSB-Band 300–2700 Hz.

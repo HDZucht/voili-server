@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2026 Hans-Dieter Zucht. Redistributions must keep this notice and the NOTICE file (author and sources).
 // ausgabe — Standard-Ausgabegerät des Systems lesen oder setzen (Core Audio).
 // Aufruf: ausgabe            → aktuelles Gerät
 //         ausgabe liste      → alle Ausgabegeräte

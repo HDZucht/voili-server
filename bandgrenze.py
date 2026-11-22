@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Hans-Dieter Zucht. Redistributions must keep this notice and the NOTICE file (author and sources).
 """Bandgrenze — das Netz nur über die Bänder unterhalb einer Frequenz rechnen lassen.
 
 Ends:   HDZ 2026-11-22: „die Frequenz begrenzen auf 12 kHz, sollte doch immer als Schalter gehen?“ ·

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Hans-Dieter Zucht. Redistributions must keep this notice and the NOTICE file (author and sources).
 """Voili Server (voice-isolator-live) — Inworld Voice Isolator als NR-Equalizer im Systemton.
 
 Ends:   HDZ 2026-11-22: „es würde mir in Stufe null reichen, wenn ich es akustisch selber bewerten kann,
@@ -43,7 +45,7 @@ from inworld.voice_isolation import VoiceIsolator
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bandgrenze  # noqa: E402
 
-VERSION = "0.1.4"
+VERSION = "0.1.5"
 SR = 48_000
 PORT = int(os.environ.get("VI_PORT", 8770))
 HIER = os.path.dirname(os.path.abspath(__file__))

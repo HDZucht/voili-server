@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2026 Hans-Dieter Zucht. Redistributions must keep this notice and the NOTICE file (author and sources).
 // klang — erkennt Musik und Sprache im Live-Ton mit Apples SoundAnalysis (eingebauter Klassifikator).
 // Ends:  HDZ 2026-11-22: „könnte das Modell erkennen, wenn Musik da ist, und den Mix bei Musik umstellen?“ ·
 //        „Musik-Switcher, zwei Regler Sprachannahme (5 %) und Musikannahme 15 % als Default, beide wählbar“.

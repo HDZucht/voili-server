@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX-License-Identifier: Apache-2.0 · Copyright 2026 Hans-Dieter Zucht
 # Beendet Voili Server und stellt den Systemton zurück. / Quits Voili Server and restores system audio.
 D="$(cd "$(dirname "$0")" && pwd)"
 A="$D/bin/vi-ausgabe"; [ -x "$A" ] || A=~/.local/bin/vi-ausgabe

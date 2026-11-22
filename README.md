@@ -1,9 +1,10 @@
 ---
 name: Voili Server
-version: 0.1.4
+version: 0.1.5
 summary: Listen to the speech of shortwave radio (SDR) free of noise, with Inworld's voice isolation model running live on your Mac's system audio.
 platform: macOS on Apple Silicon (MPS)
-license: Apache-2.0
+license: Apache-2.0 (attribution of author and sources required, see NOTICE)
+copyright: 2026 Hans-Dieter Zucht
 authors: Hans-Dieter Zucht (@HDZucht) with Aletheia (Claude Opus 5.5, Claude Code)
 ---
 
@@ -93,9 +94,11 @@ Code comments and identifiers are German. Quotes of Hans-Dieter Zucht in the com
 - **BlackHole** (GPL-3.0) by Existential Audio, installed separately, not bundled.
 - **Apple SoundAnalysis** and **Core Audio** for music detection and device routing.
 
-## License
+## License and copyright
 
-Apache-2.0, see `LICENSE` and `NOTICE`.
+Copyright 2026 Hans-Dieter Zucht. Licensed under the [Apache License 2.0](LICENSE).
+
+**Attribution required:** Under section 4(d) of the license, anyone who redistributes Voili Server or a work derived from it must include the [`NOTICE`](NOTICE) file. It names the author (Hans-Dieter Zucht) and the sources (Inworld Voice Isolator, BlackHole, Apple frameworks). Every source file carries a copyright and SPDX header.
 
 ---
 

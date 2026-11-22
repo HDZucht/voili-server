@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX-License-Identifier: Apache-2.0 · Copyright 2026 Hans-Dieter Zucht
 # Richtet Voili Server ein: venv mit PyTorch und Inworld Voice Isolator, Swift-Helfer nach ./bin.
 # Sets up Voili Server: venv with PyTorch and Inworld Voice Isolator, Swift helpers into ./bin.
 set -e
