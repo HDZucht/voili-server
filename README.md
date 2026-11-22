@@ -6,6 +6,7 @@ platform: macOS on Apple Silicon (MPS)
 license: Apache-2.0 (attribution of author and sources required, see NOTICE)
 copyright: 2026 Hans-Dieter Zucht
 authors: Hans-Dieter Zucht (@HDZucht) with Aletheia (Claude Opus 5.5, Claude Code)
+contact: hd.zucht@googlemail.com
 ---
 
 <p align="center"><img src="assets/voili-logo.svg" width="140" alt="Voili logo"></p>
@@ -87,6 +88,10 @@ Code comments and identifiers are German. Quotes of Hans-Dieter Zucht in the com
 - **Platform-neutral port:** ONNX export of the network (streaming step with its states as inputs and outputs), run with ONNX Runtime and the CoreML, DirectML or CUDA providers.
 - **Mac Voili:** native Mac app (Swift) on that port, distributed as a DMG.
 - **Voili filter for [SDR Oxide](https://github.com/dividebysandwich/sdroxide):** a noise-reduction engine loaded from an optional library.
+
+## Contact
+
+Hans-Dieter Zucht · hd.zucht@googlemail.com · GitHub [@HDZucht](https://github.com/HDZucht). Questions, ideas and bug reports are also welcome as [issues](https://github.com/HDZucht/voili-server/issues).
 
 ## Credits and sources
 
