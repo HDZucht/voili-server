@@ -1,0 +1,13 @@
+Voili Server
+Copyright 2026 Hans-Dieter Zucht
+
+This product uses Inworld Voice Isolator v1 (code and model weights, Apache-2.0),
+Copyright 2026 Inworld AI, https://github.com/inworld-ai/voice-isolator ,
+installed as the Python package "inworld-voice-isolation" with weights downloaded
+from https://huggingface.co/inworld/voice-isolator at runtime. Its own NOTICE
+credits the datasets used in training (VocalSet CC BY 4.0, IndicVoices-R CC BY 4.0,
+VCTK ODC-By 1.0).
+
+BlackHole (GPL-3.0, Existential Audio) is a separate install and is not bundled.
+
+The logo (assets/voili-logo.svg) is an original drawing made for this project.
