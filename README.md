@@ -1,6 +1,6 @@
 ---
 name: Voili Server
-version: 0.1.7
+version: 0.1.8
 summary: Listen to the speech of shortwave radio (SDR) free of noise, with Inworld's voice isolation model running live on your Mac's system audio.
 platform: macOS on Apple Silicon (MPS)
 license: Apache-2.0 (attribution of author and sources required, see NOTICE)
@@ -44,6 +44,19 @@ system audio ──► BlackHole 2ch ──► Voili Server (Inworld model on th
 Start Voili Server, open this recording in the browser and switch the isolator on and off:
 
 - **[ARRL DX contest 2026](https://youtu.be/GiYy01Z1hBo)** (YouTube, channel “Ham radio, your passport to the world.”, 46 min): many short SSB contacts with noise and fading, a good test for voice isolation. Try the Quality stage with 6 kHz bandwidth and a speech mix of 0–10 %.
+
+## Example: AM broadcast with a comb of spurious carriers
+
+A mediumwave station at 540 kHz, received with an SDR. A comb of narrow spurious carriers sits across the whole channel (receiver view below). Voili Server ran in the Quality stage, 8 kHz bandwidth, speech mix 0 %, +12 dB; the isolator was switched **off from 8 s to 14 s** of the clip and on for the rest.
+
+- 🔊 **[as-heard_on-off.mp3](examples/am-spurs/as-heard_on-off.mp3)** (30 s): on → off → on, as it came out of the loudspeaker.
+- Measured over the full 81 s recording, SSB band 300–2700 Hz, 50 ms blocks: the noise floor (10th percentile) drops by **35.7 dB** (−1.2 → −36.8 dB), the speech peaks (95th percentile) by 2.5 dB.
+
+![Spectrogram of the clip: the comb of horizontal lines fills the off segment, speech alone remains where the isolator is on](examples/am-spurs/spectrogram_as-heard.png)
+
+![Receiver view at 540 kHz: spectrum and waterfall with the comb of spurious carriers across the AM channel](examples/am-spurs/receiver_540kHz.png)
+
+How it was made: the server output goes straight to the loudspeaker, so the raw input (BlackHole) and the panel state (every 0.2 s) were recorded and the output was recomputed with the same model and settings by [`tools/demo_ein_aus.py`](tools/demo_ein_aus.py), switch points shifted by the server delay.
 
 ## Measurements (MacBook Air M4, 16 GB, PyTorch 2.15 on MPS)
 

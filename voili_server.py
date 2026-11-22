@@ -48,7 +48,7 @@ from inworld.voice_isolation import VoiceIsolator
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bandgrenze  # noqa: E402
 
-VERSION = "0.1.7"
+VERSION = "0.1.8"
 SR = 48_000
 PORT = int(os.environ.get("VI_PORT", 8770))
 HIER = os.path.dirname(os.path.abspath(__file__))
