@@ -1,6 +1,6 @@
 ---
 name: Voili Server
-version: 0.1.5
+version: 0.1.6
 summary: Listen to the speech of shortwave radio (SDR) free of noise, with Inworld's voice isolation model running live on your Mac's system audio.
 platform: macOS on Apple Silicon (MPS)
 license: Apache-2.0 (attribution of author and sources required, see NOTICE)
@@ -37,7 +37,7 @@ system audio ──► BlackHole 2ch ──► Voili Server (Inworld model on th
 - **Instant A/B.** Isolated and original run side by side, sample-aligned. The on/off switch and the mix act at playback time, without a jump.
 - **Devices.** Input and output are selectable. With BlackHole as input, the system output is routed to BlackHole and restored when you quit.
 - **SDR software.** Select BlackHole as the audio output of your SDR application; Voili Server then processes only that application.
-- **Languages.** The panel is German when the browser language is German, English otherwise.
+- **Languages.** German or English: switch with DE | EN in the panel (or `?lang=de` / `?lang=en`); without a choice the browser language decides.
 
 ## Try it: example for ham DX
 

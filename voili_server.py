@@ -16,6 +16,7 @@ Ends:   HDZ 2026-11-22: „es würde mir in Stufe null reichen, wenn ich es akus
         HDZ 2026-11-22 (v0.1.4): „übersetze Voili Server in Englisch, wenn Sprache nicht Deutsch ist … als Titel
         Voili Server … stilisiere den Volleyball … damit neues Bild rechtefrei wird, und mach da ein Logo rein“.
         Sprache folgt der Browsersprache (de → Deutsch, sonst Englisch); Fehler kommen als Codes (E_…).
+        HDZ 2026-11-22 (v0.1.6): „ja, mache Sprachumschalter“ → DE | EN oben rechts, auch ?lang=de|en, Wahl bleibt.
 Ways:   Eingang (BlackHole 2ch für Systemton, oder jedes andere Eingabegerät) → dieses Programm → Ausgabegerät.
         Ist der Eingang ein Loopback-Gerät (BlackHole, Loopback), wird die Standard-Ausgabe des Systems dorthin
         umgestellt und beim Wechsel oder Ende zurückgestellt.
@@ -45,7 +46,7 @@ from inworld.voice_isolation import VoiceIsolator
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bandgrenze  # noqa: E402
 
-VERSION = "0.1.5"
+VERSION = "0.1.6"
 SR = 48_000
 PORT = int(os.environ.get("VI_PORT", 8770))
 HIER = os.path.dirname(os.path.abspath(__file__))
@@ -425,6 +426,7 @@ SEITE = """<!doctype html><meta charset=utf-8><title>Voili Server</title>
 <style>body{font:15px -apple-system,sans-serif;max-width:580px;margin:20px auto;color:#222}
 header{display:flex;align-items:center;gap:12px;margin-bottom:8px}header img{width:84px}
 header h1{font-size:26px;margin:0}header .sub{font-size:13px;color:#555}
+.sprache{margin-left:auto;font-size:14px}.sprache a{color:#1f6f5c;text-decoration:none;padding:2px 4px}.sprache a.ein{font-weight:bold;text-decoration:underline}
 button{font-size:15px;padding:8px 14px;margin:3px;border-radius:7px;border:1px solid #888;background:#f4f4f4}
 button.ein{background:#1f6f5c;color:#fff;border-color:#1f6f5c}#an{font-size:20px;padding:14px 30px}
 table{border-collapse:collapse;margin-top:10px}td{padding:2px 10px 2px 0;vertical-align:top}
@@ -432,7 +434,8 @@ input[type=range]{width:220px}select{font-size:14px;max-width:300px}
 .hinweis{background:#fff6d8;border:1px solid #e3c96b;padding:8px 10px;border-radius:6px;font-size:14px}
 .klein{font-size:13px;color:#555}h4{margin:22px 0 6px}</style>
 <header><img src="/logo.svg" alt="Voili"><div><h1>Voili Server</h1>
-<div class=sub><span data-t=untertitel></span> · v__VERSION__</div></div></header>
+<div class=sub><span data-t=untertitel></span> · v__VERSION__</div></div>
+<div class=sprache><a id=l_de href="?lang=de">DE</a>|<a id=l_en href="?lang=en">EN</a></div></header>
 <button id=an onclick="s('an',Z.an?0:1)">…</button><br>
 <button id=offline onclick="s('modus','offline')" data-t=b_offline></button>
 <button id=echtzeit onclick="s('modus','echtzeit')" data-t=b_echtzeit></button><br>
@@ -470,7 +473,10 @@ erkannt:'Detected',musik:'music',sprache:'speech',verzoegerung:'Delay approx.',b
 unterlaeufe:'Underruns',verworfen:'dropped (drift)',systemton:'System output',fehler:'Error',beenden:'Quit',beenden_frage:'Quit and restore system audio?',quellen:'Sources',
 fuss:'Models: Inworld Voice Isolator v1, real time (58 M, causal) and offline (64 M), Apache-2.0. Tool: Hans-Dieter Zucht with Aletheia (Claude Opus 5.5), 2026. Logo: original drawing.',
 E_IN:'Input “{0}” missing – install BlackHole or choose another input',E_LOOP:'Output must not be a loopback device (feedback)',E_DEV:'Device: {0}',E_BAND:'Band limit: {0}',E_RUN:'Processing: {0}'}};
-const L=TX[(navigator.language||'en').toLowerCase().startsWith('de')?'de':'en'];document.documentElement.lang=L===TX.de?'de':'en';
+// Sprache: ?lang= (merkt sich die Wahl) > gemerkte Wahl > Browsersprache. HDZ 22.11.: „ja, mache Sprachumschalter“.
+const qs=new URLSearchParams(location.search).get('lang');if(qs==='de'||qs==='en')localStorage.setItem('voili_lang',qs);
+const SPR=localStorage.getItem('voili_lang')||((navigator.language||'en').toLowerCase().startsWith('de')?'de':'en');
+const L=TX[SPR];document.documentElement.lang=SPR;document.getElementById('l_'+SPR).className='ein';
 document.querySelectorAll('[data-t]').forEach(e=>e.textContent=L[e.dataset.t]);document.querySelectorAll('[data-th]').forEach(e=>e.innerHTML=L[e.dataset.th]);
 function fx(f){if(!f)return '–';const [k,...a]=f.split('|');return L[k]?L[k].replace('{0}',a.join('|')):f}
 const zahl=(v,n)=>L===TX.de?v.toFixed(n).replace('.',','):v.toFixed(n);
