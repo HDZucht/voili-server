@@ -39,6 +39,12 @@ system audio ──► BlackHole 2ch ──► Voili Server (Inworld model on th
 - **SDR software.** Select BlackHole as the audio output of your SDR application; Voili Server then processes only that application.
 - **Languages.** The panel is German when the browser language is German, English otherwise.
 
+## Try it: example for ham DX
+
+Start Voili Server, open this recording in the browser and switch the isolator on and off:
+
+- **[ARRL DX contest 2026](https://youtu.be/GiYy01Z1hBo)** (YouTube, channel “Ham radio, your passport to the world.”, 46 min): many short SSB contacts with noise and fading, a good test for voice isolation. Try the offline stage with 6 kHz bandwidth and a speech mix of 0–10 %.
+
 ## Measurements (MacBook Air M4, 16 GB, PyTorch 2.15 on MPS)
 
 Load is the real-time factor (RTF): compute time divided by audio duration. Below 1 means faster than real time.
