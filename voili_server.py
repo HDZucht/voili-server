@@ -16,6 +16,8 @@ Ends:   HDZ 2026-11-22: „es würde mir in Stufe null reichen, wenn ich es akus
         HDZ 2026-11-22 (v0.1.4): „übersetze Voili Server in Englisch, wenn Sprache nicht Deutsch ist … als Titel
         Voili Server … stilisiere den Volleyball … damit neues Bild rechtefrei wird, und mach da ein Logo rein“.
         Sprache folgt der Browsersprache (de → Deutsch, sonst Englisch); Fehler kommen als Codes (E_…).
+        HDZ 2026-11-22 (v0.1.7): „nenne die Modelle einfach Schnell und Quality“ → Knöpfe Schnell/Qualität bzw.
+        Fast/Quality; intern bleiben die Modi „echtzeit“ und „offline“.
         HDZ 2026-11-22 (v0.1.6): „ja, mache Sprachumschalter“ → DE | EN oben rechts, auch ?lang=de|en, Wahl bleibt.
 Ways:   Eingang (BlackHole 2ch für Systemton, oder jedes andere Eingabegerät) → dieses Programm → Ausgabegerät.
         Ist der Eingang ein Loopback-Gerät (BlackHole, Loopback), wird die Standard-Ausgabe des Systems dorthin
@@ -46,7 +48,7 @@ from inworld.voice_isolation import VoiceIsolator
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bandgrenze  # noqa: E402
 
-VERSION = "0.1.6"
+VERSION = "0.1.7"
 SR = 48_000
 PORT = int(os.environ.get("VI_PORT", 8770))
 HIER = os.path.dirname(os.path.abspath(__file__))
@@ -455,23 +457,23 @@ input[type=range]{width:220px}select{font-size:14px;max-width:300px}
 <h4 data-t=quellen></h4><ul class=klein>__QUELLEN__</ul>
 <p class=klein data-t=fuss></p>
 <script>
-const TX={de:{untertitel:'Stimme isolieren im Systemton',b_offline:'Offline (≈ 2,5 s, für Funk)',b_echtzeit:'Echtzeit (≈ 0,5 s)',
+const TX={de:{untertitel:'Stimme isolieren im Systemton',b_offline:'Qualität (≈ 2,5 s, für Funk)',b_echtzeit:'Schnell (≈ 0,5 s)',
 bandbreite:'Bandbreite',voll:'voll',mix_sprache:'Mix bei Sprache',mix_musik:'Mix bei Musik',puffer:'Puffer',lautstaerke:'Lautstärke',
 eingang:'Eingang',ausgang:'Ausgang',an:'Isolator AN',aus:'Isolator AUS (Original)',um_an:'Umschalter AN',um_aus:'Umschalter AUS',
 blackhole:'Für den Systemton (Browser, KiwiSDR, YouTube) braucht es das virtuelle Gerät <b>BlackHole 2ch</b>: <code>brew install blackhole-2ch</code> oder Installer von <a href="https://github.com/ExistentialAudio/BlackHole" target=_blank>github.com/ExistentialAudio/BlackHole</a>. Danach hier als Eingang wählen; der Systemton wird dann automatisch dorthin umgeleitet und beim Beenden zurückgestellt.',
 erklaerung:'Musik-Umschalter: Apples Klangerkennung (SoundAnalysis) meldet Musik; nach ≈ 2 s gilt „Mix bei Musik“, nach ≈ 3 s ohne Musik wieder „Mix bei Sprache“, der Übergang gleitet. Bandbreite: das Modell rechnet nur die Bänder unter der Grenze (weniger Rechenlast), darüber kommt aus dem Isolator nichts. Mix 0 % = nur Stimme, 100 % = Original. Ist BlackHole der Eingang, wird die Systemausgabe dorthin umgestellt; die Lautstärketasten wirken dann auf BlackHole, die Lautstärke regelt hier der Regler.',
 erkannt:'Erkannt',musik:'Musik',sprache:'Sprache',verzoegerung:'Verzögerung ca.',baender:'Bänder gerechnet',von:'von',rtf:'Rechenlast (RTF)',zu_hoch:' ⚠️ zu hoch',
 unterlaeufe:'Unterläufe',verworfen:'verworfen (Drift)',systemton:'Systemton',fehler:'Fehler',beenden:'Beenden',beenden_frage:'Beenden und Systemton zurückstellen?',quellen:'Quellen',
-fuss:'Modelle: Inworld Voice Isolator v1, Echtzeit (58 M, kausal) und Offline (64 M), Apache-2.0. Werkzeug: Hans-Dieter Zucht mit Aletheia (Claude Opus 5.5), 2026. Logo: eigene Zeichnung.',
+fuss:'Modelle: Inworld Voice Isolator v1, „Schnell“ = Echtzeitmodell (58 M, kausal), „Qualität“ = Offline-Modell (64 M), Apache-2.0. Werkzeug: Hans-Dieter Zucht mit Aletheia (Claude Opus 5.5), 2026. Logo: eigene Zeichnung.',
 E_IN:'Eingang „{0}“ fehlt – BlackHole installieren oder anderen Eingang wählen',E_LOOP:'Ausgang darf kein Loopback-Gerät sein (Rückkopplung)',E_DEV:'Gerät: {0}',E_BAND:'Bandgrenze: {0}',E_RUN:'Verarbeitung: {0}'},
-en:{untertitel:'Voice isolation for system audio',b_offline:'Offline (≈ 2.5 s, for radio)',b_echtzeit:'Real time (≈ 0.5 s)',
+en:{untertitel:'Voice isolation for system audio',b_offline:'Quality (≈ 2.5 s, for radio)',b_echtzeit:'Fast (≈ 0.5 s)',
 bandbreite:'Bandwidth',voll:'full',mix_sprache:'Mix for speech',mix_musik:'Mix for music',puffer:'Buffer',lautstaerke:'Volume',
 eingang:'Input',ausgang:'Output',an:'Isolator ON',aus:'Isolator OFF (original)',um_an:'Switch ON',um_aus:'Switch OFF',
 blackhole:'System audio (browser, KiwiSDR, YouTube) needs the virtual device <b>BlackHole 2ch</b>: <code>brew install blackhole-2ch</code> or the installer from <a href="https://github.com/ExistentialAudio/BlackHole" target=_blank>github.com/ExistentialAudio/BlackHole</a>. Then choose it as input here; system audio is routed to it automatically and restored when you quit.',
 erklaerung:'Music switch: Apple sound classification (SoundAnalysis) detects music; after ≈ 2 s “Mix for music” applies, after ≈ 3 s without music “Mix for speech” again, with a smooth transition. Bandwidth: the model computes only the bands below the limit (less load); above it the isolator outputs nothing. Mix 0 % = voice only, 100 % = original. With BlackHole as input the system output is switched to it; the volume keys then act on BlackHole, use the slider here for volume.',
 erkannt:'Detected',musik:'music',sprache:'speech',verzoegerung:'Delay approx.',baender:'Bands computed',von:'of',rtf:'Load (RTF)',zu_hoch:' ⚠️ too high',
 unterlaeufe:'Underruns',verworfen:'dropped (drift)',systemton:'System output',fehler:'Error',beenden:'Quit',beenden_frage:'Quit and restore system audio?',quellen:'Sources',
-fuss:'Models: Inworld Voice Isolator v1, real time (58 M, causal) and offline (64 M), Apache-2.0. Tool: Hans-Dieter Zucht with Aletheia (Claude Opus 5.5), 2026. Logo: original drawing.',
+fuss:'Models: Inworld Voice Isolator v1, “Fast” = real-time model (58 M, causal), “Quality” = offline model (64 M), Apache-2.0. Tool: Hans-Dieter Zucht with Aletheia (Claude Opus 5.5), 2026. Logo: original drawing.',
 E_IN:'Input “{0}” missing – install BlackHole or choose another input',E_LOOP:'Output must not be a loopback device (feedback)',E_DEV:'Device: {0}',E_BAND:'Band limit: {0}',E_RUN:'Processing: {0}'}};
 // Sprache: ?lang= (merkt sich die Wahl) > gemerkte Wahl > Browsersprache. HDZ 22.11.: „ja, mache Sprachumschalter“.
 const qs=new URLSearchParams(location.search).get('lang');if(qs==='de'||qs==='en')localStorage.setItem('voili_lang',qs);

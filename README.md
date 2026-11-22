@@ -1,6 +1,6 @@
 ---
 name: Voili Server
-version: 0.1.6
+version: 0.1.7
 summary: Listen to the speech of shortwave radio (SDR) free of noise, with Inworld's voice isolation model running live on your Mac's system audio.
 platform: macOS on Apple Silicon (MPS)
 license: Apache-2.0 (attribution of author and sources required, see NOTICE)
@@ -30,8 +30,8 @@ system audio ──► BlackHole 2ch ──► Voili Server (Inworld model on th
 ```
 
 - **Two stages.**
-  - **Offline:** the two-sided model, 64 M parameters, in sliding windows of 0.5 s past · 1 s output · 0.25 s future. Delay ≈ 2–2.5 s. Best for radio.
-  - **Real time:** the causal model, 58 M parameters, 20 ms look-ahead, 100 ms pieces. Delay ≈ 0.5 s.
+  - **Quality:** Inworld's offline model (two-sided, 64 M parameters) in sliding windows of 0.5 s past · 1 s output · 0.25 s future. Delay ≈ 2–2.5 s. Best for radio.
+  - **Fast:** Inworld's real-time model (causal, 58 M parameters), 20 ms look-ahead, 100 ms pieces. Delay ≈ 0.5 s.
 - **Mix for speech / mix for music.** Apple's built-in sound classifier (SoundAnalysis) detects music. After ≈ 2 s of music the music mix applies, after ≈ 3 s without music the speech mix applies again; the change glides over 0.5 s. Defaults: 5 % and 15 % original.
 - **Bandwidth limit (full · 12 · 8 · 6 kHz).** The model splits the spectrum into 46 bands and its load grows with the number of bands. At 6 kHz it computes 28 bands, and the load drops by about 30 %. Above the limit the isolator outputs nothing; the mix brings the original back there.
 - **Instant A/B.** Isolated and original run side by side, sample-aligned. The on/off switch and the mix act at playback time, without a jump.
@@ -43,7 +43,7 @@ system audio ──► BlackHole 2ch ──► Voili Server (Inworld model on th
 
 Start Voili Server, open this recording in the browser and switch the isolator on and off:
 
-- **[ARRL DX contest 2026](https://youtu.be/GiYy01Z1hBo)** (YouTube, channel “Ham radio, your passport to the world.”, 46 min): many short SSB contacts with noise and fading, a good test for voice isolation. Try the offline stage with 6 kHz bandwidth and a speech mix of 0–10 %.
+- **[ARRL DX contest 2026](https://youtu.be/GiYy01Z1hBo)** (YouTube, channel “Ham radio, your passport to the world.”, 46 min): many short SSB contacts with noise and fading, a good test for voice isolation. Try the Quality stage with 6 kHz bandwidth and a speech mix of 0–10 %.
 
 ## Measurements (MacBook Air M4, 16 GB, PyTorch 2.15 on MPS)
 
@@ -51,11 +51,11 @@ Load is the real-time factor (RTF): compute time divided by audio duration. Belo
 
 | Run | RTF |
 |---|---|
-| Real time, 100 ms pieces | 0.53 (single pieces up to 2.9) |
-| Offline, 1.75 s windows | 0.56 live; 0.40 with 6 kHz limit |
-| Same models on the CPU | 7.5 (real time) and 4.7 (offline), so a GPU or NPU is required |
+| Fast (real-time model), 100 ms pieces | 0.53 (single pieces up to 2.9) |
+| Quality (offline model), 1.75 s windows | 0.56 live; 0.40 with 6 kHz limit |
+| Same models on the CPU | 7.5 (Fast) and 4.7 (Quality), so a GPU or NPU is required |
 
-**Finding on SSB:** on one heavily compressed SSB recording, the real-time model with all bands treated the voice as noise (−38 dB). With a bandwidth limit of 12/8/6 kHz the voice stays (−4.6/−4.0/−2.5 dB), and the offline model keeps it in every setting. This is one recording so far, and the mechanism is not yet understood.
+**Finding on SSB:** on one heavily compressed SSB recording, the Fast (real-time) model with all bands treated the voice as noise (−38 dB). With a bandwidth limit of 12/8/6 kHz the voice stays (−4.6/−4.0/−2.5 dB), and the Quality (offline) model keeps it in every setting. This is one recording so far, and the mechanism is not yet understood.
 
 ## Requirements
 
